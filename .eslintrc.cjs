@@ -33,6 +33,7 @@ module.exports = {
     ],
     plugins: ['simple-import-sort', 'prettier'],
     rules: {
+        'react/no-unknown-property': ['error', { ignore: ['css'] }],
         'prettier/prettier': ['error', {}, { usePrettierrc: true }],
         'react/react-in-jsx-scope': 'off',
         'react/no-unescaped-entities': 'off',
