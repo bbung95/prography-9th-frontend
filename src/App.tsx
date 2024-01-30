@@ -1,13 +1,15 @@
 import { Global, ThemeProvider } from '@emotion/react';
-import { theme } from './styles/theme';
+
+import Layout from './layout/Layout';
 import reset from './styles/reset';
+import { theme } from './styles/theme';
 
 function App() {
     return (
         <>
             <ThemeProvider theme={theme}>
                 <Global styles={reset} />
-                <div>Page</div>
+                <Layout>Page</Layout>
             </ThemeProvider>
         </>
     );
