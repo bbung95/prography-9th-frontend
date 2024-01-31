@@ -1,5 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react';
 
+import Header from './components/header/Header';
 import Layout from './layout/Layout';
 import reset from './styles/reset';
 import { theme } from './styles/theme';
@@ -9,7 +10,9 @@ function App() {
         <>
             <ThemeProvider theme={theme}>
                 <Global styles={reset} />
-                <Layout>Page</Layout>
+                <Layout>
+                    <Header />
+                </Layout>
             </ThemeProvider>
         </>
     );
