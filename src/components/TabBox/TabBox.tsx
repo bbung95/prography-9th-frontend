@@ -1,13 +1,21 @@
 import styled from '@emotion/styled';
 
+import Chip from '../Chip/Chip';
+
 interface Props {
-    children: React.ReactNode;
+    tabs: string[];
 }
 
 const TabBox = (props: Props) => {
-    const { children } = props;
+    const { tabs } = props;
 
-    return <TabBoxStyled>{children}</TabBoxStyled>;
+    return (
+        <TabBoxStyled>
+            {tabs.map((tab) => (
+                <Chip key={tab} text={tab} />
+            ))}
+        </TabBoxStyled>
+    );
 };
 
 export default TabBox;
@@ -15,6 +23,13 @@ export default TabBox;
 const TabBoxStyled = styled.ul`
     list-style: none;
 
+    width: 100%;
+
+    padding: 0;
+    margin: 0;
+
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
 `;

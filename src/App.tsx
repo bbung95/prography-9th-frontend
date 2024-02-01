@@ -1,6 +1,6 @@
 import { Global, ThemeProvider } from '@emotion/react';
 
-import Router from './routes/Router';
+import Router from './components/routes/Router';
 import reset from './styles/reset';
 import theme from './styles/theme';
 
