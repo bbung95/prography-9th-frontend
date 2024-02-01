@@ -1,13 +1,17 @@
 import { css } from '@emotion/react';
+import { Outlet } from 'react-router-dom';
 
-interface Props {
-    children: React.ReactNode;
-}
+import Header from '../components/Header/Header';
 
-const Layout = (props: Props) => {
-    const { children } = props;
-
-    return <div css={layoutCss}>{children}</div>;
+const Layout = () => {
+    return (
+        <>
+            <Header />
+            <div css={layoutCss}>
+                <Outlet />
+            </div>
+        </>
+    );
 };
 
 export default Layout;
