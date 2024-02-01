@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import Card from '../components/Card/Card';
+import CardList from '../components/CardList/CardList';
 import TabBox from '../components/TabBox/TabBox';
 
 const tabList = [
@@ -24,7 +24,7 @@ const HomePage = () => {
     return (
         <ContainerStyled>
             <TabBox tabs={tabList} />
-            <Card cardInfo={{}} />
+            <CardList />
         </ContainerStyled>
     );
 };

@@ -11,7 +11,7 @@ interface Props {
 
 const Card = (props: Props) => {
     const {
-        cardInfo: { img = 'https://via.placeholder.com/300x300', info = 'Beed Sunday Roast' },
+        cardInfo: { img = 'https://via.placeholder.com/250x250', info = 'Beed Sunday Roast' },
     } = props;
 
     return (
@@ -27,13 +27,12 @@ const Card = (props: Props) => {
 export default Card;
 
 const CardStyled = styled.div`
-    width: 300px;
-    height: 380px;
+    width: 250px;
 `;
 
 const ImageWrapperStyled = styled.div`
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
 
     border-radius: 20px;
 
