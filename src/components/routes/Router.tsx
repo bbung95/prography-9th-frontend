@@ -6,6 +6,7 @@ import Layout from '../layout/Layout';
 const Router = () => {
     return (
         <BrowserRouter>
+            w
             <Routes>
                 <Route element={<Layout />}>
                     <Route path='/' element={<HomePage />} />
