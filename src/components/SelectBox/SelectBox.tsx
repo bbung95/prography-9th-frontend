@@ -1,3 +1,5 @@
+import styled from '@emotion/styled';
+
 export interface IOption {
     text: string;
     value: string;
@@ -12,7 +14,7 @@ const SelectBox = (props: Props) => {
     const { selectValue, options } = props;
 
     return (
-        <select>
+        <SelectBoxStyled>
             {options.map((option) => (
                 <option
                     key={option.value}
@@ -22,8 +24,18 @@ const SelectBox = (props: Props) => {
                     {option.text}
                 </option>
             ))}
-        </select>
+        </SelectBoxStyled>
     );
 };
 
 export default SelectBox;
+
+const SelectBoxStyled = styled.select`
+    padding: 6px 6px 6px 12px;
+
+    font-weight: 600;
+
+    border-radius: 12px;
+
+    box-shadow: 3px 3px 5px 2px lightgray;
+`;

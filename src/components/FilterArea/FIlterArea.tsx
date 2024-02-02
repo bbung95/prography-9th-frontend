@@ -1,3 +1,5 @@
+import styled from '@emotion/styled';
+
 import SelectBox, { IOption } from '../SelectBox/SelectBox';
 
 const sortOption: IOption[] = [
@@ -24,15 +26,24 @@ const viewOption: IOption[] = [
         text: '4개씩 보기',
         value: '4',
     },
-];
+] as const;
 
-const FIlterArea = () => {
+const FilterArea = () => {
     return (
-        <div>
+        <FilterAreaStyled>
             <SelectBox options={sortOption} />
             <SelectBox options={viewOption} />
-        </div>
+        </FilterAreaStyled>
     );
 };
 
-export default FIlterArea;
+export default FilterArea;
+
+const FilterAreaStyled = styled.div`
+    padding: 18px 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 12px;
+`;

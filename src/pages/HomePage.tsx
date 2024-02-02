@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import CardList from '../components/CardList/CardList';
-import FIlterArea from '../components/FilterArea/FIlterArea';
+import FilterArea from '../components/FilterArea/FilterArea';
 import TabBox from '../components/TabBox/TabBox';
 
 const tabList = [
@@ -25,7 +25,7 @@ const HomePage = () => {
     return (
         <ContainerStyled>
             <TabBox tabs={tabList} />
-            <FIlterArea />
+            <FilterArea />
             <CardList />
         </ContainerStyled>
     );
