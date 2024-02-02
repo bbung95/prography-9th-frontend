@@ -13,14 +13,12 @@ interface Props {
 const SelectBox = (props: Props) => {
     const { selectValue, options } = props;
 
+    const defaultValue = selectValue || options[0].value;
+
     return (
-        <SelectBoxStyled>
+        <SelectBoxStyled defaultValue={defaultValue}>
             {options.map((option) => (
-                <option
-                    key={option.value}
-                    value={option.value}
-                    selected={selectValue === option.value}
-                >
+                <option key={option.value} value={option.value}>
                     {option.text}
                 </option>
             ))}

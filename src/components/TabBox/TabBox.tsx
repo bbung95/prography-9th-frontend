@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
+import { ICategory } from '../../apis/api';
 import Chip from '../Chip/Chip';
 
 interface Props {
-    tabs: string[];
+    tabs: ICategory[];
 }
 
 const TabBox = (props: Props) => {
@@ -12,7 +13,7 @@ const TabBox = (props: Props) => {
     return (
         <TabBoxStyled>
             {tabs.map((tab) => (
-                <Chip key={tab} text={tab} />
+                <Chip key={tab.idCategory} text={tab.strCategory} />
             ))}
         </TabBoxStyled>
     );

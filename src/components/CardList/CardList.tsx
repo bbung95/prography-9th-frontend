@@ -1,15 +1,25 @@
 import styled from '@emotion/styled';
+import { useQuery } from 'react-query';
 
+import { fetchGetFoodList } from '../../apis/api';
 import Card from '../Card/Card';
 
 const CardList = () => {
+    const { data, isLoading } = useQuery(['foods'], () => fetchGetFoodList('Beef'));
+
     return (
         <CardListStyled>
-            {new Array(20).fill('').map((_, idx) => (
-                <li key={idx}>
-                    <Card cardInfo={{}} />
-                </li>
-            ))}
+            {!isLoading &&
+                data?.meals.map((food) => (
+                    <li key={food.idMeal}>
+                        <Card
+                            cardInfo={{
+                                img: food.strMealThumb,
+                                info: food.strMeal,
+                            }}
+                        />
+                    </li>
+                ))}
         </CardListStyled>
     );
 };
@@ -23,6 +33,6 @@ const CardListStyled = styled.ul`
     padding: 0;
 
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 12px;
 `;
