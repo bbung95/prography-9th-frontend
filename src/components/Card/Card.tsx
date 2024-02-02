@@ -37,6 +37,11 @@ const ImageWrapperStyled = styled.div`
     border-radius: 20px;
 
     overflow: hidden;
+
+    & > img {
+        width: inherit;
+        height: inherit;
+    }
 `;
 
 const CardInfo = styled.p`

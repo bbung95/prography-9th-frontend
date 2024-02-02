@@ -7,11 +7,11 @@ import FilterArea from '../components/FilterArea/FilterArea';
 import TabBox from '../components/TabBox/TabBox';
 
 const HomePage = () => {
-    const { data, isLoading } = useQuery(['category'], fetchGetCategory);
+    const { data: tabs, isLoading } = useQuery(['category'], fetchGetCategory);
 
     return (
         <ContainerStyled>
-            {!isLoading && <TabBox tabs={data?.categories ?? []} />}
+            {!isLoading && <TabBox tabs={tabs?.categories ?? []} />}
             <FilterArea />
             <CardList />
         </ContainerStyled>
