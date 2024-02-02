@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 interface Props {
     text: string;
     isFocus?: boolean;
+    handleClick?: () => void;
 }
 
 const Chip = (props: Props) => {
@@ -14,6 +15,8 @@ const Chip = (props: Props) => {
 export default Chip;
 
 const ChipStyled = styled.span<{ $isFocus?: boolean }>`
+    cursor: pointer;
+
     padding: 14px 32px;
 
     font-weight: 600;
