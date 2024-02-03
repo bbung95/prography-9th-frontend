@@ -17,7 +17,7 @@ const Card = (props: Props) => {
     return (
         <CardStyled>
             <ImageWrapperStyled>
-                <img src={img} alt='' />
+                <img src={img} alt='' loading='lazy' />
             </ImageWrapperStyled>
             <CardInfo>{info}</CardInfo>
         </CardStyled>

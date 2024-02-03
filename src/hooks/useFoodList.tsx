@@ -11,6 +11,7 @@ const useFoodList = () => {
 
     const [foodList, setFoodList] = useState<IFoodInfo[]>([]);
     const [sort, setSort] = useState<string>(sortValue);
+    const [offset, setOffset] = useState<number>(1);
 
     const combinedQueries = useQueries({
         queries: categories.map((cat) => {
@@ -18,7 +19,7 @@ const useFoodList = () => {
         }),
         combine: (results) => {
             return {
-                data: results.map((result) => result.data?.meals ?? []),
+                data: results.map((result) => result.data?.meals ?? []) ?? [],
                 pending: results.some((result) => result.isPending),
             };
         },
@@ -79,11 +80,20 @@ const useFoodList = () => {
             }
 
             const sortList = sortFoodList(foodList);
-            setFoodList([...sortList]);
+            setFoodList((prevFoodList) => {
+                if (JSON.stringify(prevFoodList) !== JSON.stringify(sortList)) {
+                    return [...sortList];
+                }
+                return prevFoodList;
+            });
         }
     }, [combinedQueries]);
 
-    return { foodList, sort, changeSort };
+    useEffect(() => {
+        setOffset(1);
+    }, [searchParams]);
+
+    return { foodList, sort, offset, setOffset, changeSort };
 };
 
 export default useFoodList;

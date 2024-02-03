@@ -39,8 +39,6 @@ interface Props {
 const FilterArea = (props: Props) => {
     const { count, totalCount, sort, handleChange } = props;
 
-    console.log(sort);
-
     return (
         <FilterAreaStyled>
             <InfoBoxStyled>
