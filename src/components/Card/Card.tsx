@@ -7,17 +7,19 @@ export interface ICardInfo {
 
 interface Props {
     cardInfo: ICardInfo;
+    viewType?: number;
 }
 
 const Card = (props: Props) => {
     const {
         cardInfo: { img = 'https://via.placeholder.com/250x250', info = 'Beed Sunday Roast' },
+        viewType = 4,
     } = props;
 
     return (
-        <CardStyled>
+        <CardStyled $viewType={viewType}>
             <ImageWrapperStyled>
-                <img src={img} alt='' />
+                <img src={img} alt='' loading='lazy' />
             </ImageWrapperStyled>
             <CardInfo>{info}</CardInfo>
         </CardStyled>
@@ -26,13 +28,16 @@ const Card = (props: Props) => {
 
 export default Card;
 
-const CardStyled = styled.div`
-    width: 250px;
+const CardStyled = styled.article<{ $viewType: number }>`
+    width: ${(props) => (props.$viewType === 4 ? 'calc(24.9999% - 9.1111px)' : 'calc(50% - 8px)')};
+
+    @media screen and (max-width: 576px) {
+        width: 100%;
+    }
 `;
 
 const ImageWrapperStyled = styled.div`
-    width: 250px;
-    height: 250px;
+    width: 100%;
 
     border-radius: 20px;
 

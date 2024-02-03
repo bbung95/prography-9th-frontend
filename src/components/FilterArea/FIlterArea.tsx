@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ChangeEvent } from 'react';
 
 import SelectBox, { IOption } from '../SelectBox/SelectBox';
 
@@ -31,10 +32,14 @@ const viewOption: IOption[] = [
 interface Props {
     count: number;
     totalCount: number;
+    sort?: string;
+    viewType: number;
+    handleChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
+    handleChangeView?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const FilterArea = (props: Props) => {
-    const { count, totalCount } = props;
+    const { count, totalCount, sort, viewType, handleChange, handleChangeView } = props;
 
     return (
         <FilterAreaStyled>
@@ -42,8 +47,12 @@ const FilterArea = (props: Props) => {
                 {count}/{totalCount} 개 조회
             </InfoBoxStyled>
             <FilterGroupStyled>
-                <SelectBox options={sortOption} />
-                <SelectBox options={viewOption} selectValue='4' />
+                <SelectBox options={sortOption} selectValue={sort} handleChange={handleChange} />
+                <SelectBox
+                    options={viewOption}
+                    selectValue={String(viewType)}
+                    handleChange={handleChangeView}
+                />
             </FilterGroupStyled>
         </FilterAreaStyled>
     );
@@ -68,4 +77,10 @@ const FilterGroupStyled = styled.div`
     display: flex;
     flex-direction: row;
     gap: 12px;
+
+    & > select:last-child {
+        @media screen and (max-width: 576px) {
+            display: none;
+        }
+    }
 `;
