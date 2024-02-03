@@ -5,15 +5,15 @@ import SelectBox, { IOption } from '../SelectBox/SelectBox';
 const sortOption: IOption[] = [
     {
         text: '최신 등록순',
-        value: 'recent',
+        value: 'new',
     },
     {
         text: '오름차순',
-        value: 'desc',
+        value: 'asc',
     },
     {
         text: '내림차순',
-        value: 'asc',
+        value: 'desc',
     },
 ] as const;
 
@@ -28,11 +28,23 @@ const viewOption: IOption[] = [
     },
 ] as const;
 
-const FilterArea = () => {
+interface Props {
+    count: number;
+    totalCount: number;
+}
+
+const FilterArea = (props: Props) => {
+    const { count, totalCount } = props;
+
     return (
         <FilterAreaStyled>
-            <SelectBox options={sortOption} />
-            <SelectBox options={viewOption} />
+            <InfoBoxStyled>
+                {count}/{totalCount} 개 조회
+            </InfoBoxStyled>
+            <FilterGroupStyled>
+                <SelectBox options={sortOption} />
+                <SelectBox options={viewOption} selectValue='4' />
+            </FilterGroupStyled>
         </FilterAreaStyled>
     );
 };
@@ -44,6 +56,16 @@ const FilterAreaStyled = styled.div`
 
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+const InfoBoxStyled = styled.div`
+    font-weight: 600;
+`;
+
+const FilterGroupStyled = styled.div`
+    display: flex;
+    flex-direction: row;
     gap: 12px;
 `;

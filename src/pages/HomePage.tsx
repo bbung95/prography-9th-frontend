@@ -1,19 +1,16 @@
 import styled from '@emotion/styled';
-import { useQuery } from 'react-query';
 
-import { fetchGetCategory } from '../apis/api';
-import CardList from '../components/CardList/CardList';
-import FilterArea from '../components/FilterArea/FilterArea';
+import CardList from '../components/ContentsArea/ContentsArea';
 import TabBox from '../components/TabBox/TabBox';
+import useFilterTab from '../hooks/useFilterTab';
 
 const HomePage = () => {
-    const { data: tabs, isLoading } = useQuery(['category'], fetchGetCategory);
+    const { isLoading, tabs, handleSelectCategory } = useFilterTab();
 
     return (
         <ContainerStyled>
-            {!isLoading && <TabBox tabs={tabs?.categories ?? []} />}
-            <FilterArea />
-            <CardList />
+            {!isLoading && <TabBox tabs={tabs} handleClick={handleSelectCategory} />}
+            <CardList selectCategory={'selectCategory'} />
         </ContainerStyled>
     );
 };

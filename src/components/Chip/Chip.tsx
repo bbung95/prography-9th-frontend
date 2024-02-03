@@ -7,9 +7,13 @@ interface Props {
 }
 
 const Chip = (props: Props) => {
-    const { text, isFocus } = props;
+    const { text, isFocus, handleClick } = props;
 
-    return <ChipStyled $isFocus={isFocus}>{text}</ChipStyled>;
+    return (
+        <ChipStyled $isFocus={isFocus} onClick={handleClick}>
+            {text}
+        </ChipStyled>
+    );
 };
 
 export default Chip;
