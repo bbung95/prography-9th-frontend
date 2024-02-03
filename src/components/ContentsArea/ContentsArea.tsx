@@ -1,17 +1,18 @@
 import styled from '@emotion/styled';
-import { useQuery } from 'react-query';
 
-import { fetchGetFoodList } from '../../apis/api';
+import useFoodList from '../../hooks/useFoodList';
 import Card from '../Card/Card';
+import FilterArea from '../FilterArea/FilterArea';
 
-const CardList = () => {
-    const { data, isLoading } = useQuery(['foods'], () => fetchGetFoodList('Beef'));
+const ContentsArea = () => {
+    const { foodList } = useFoodList();
 
     return (
-        <CardListStyled>
-            {!isLoading &&
-                data?.meals.map((food) => (
-                    <li key={food.idMeal}>
+        <ContentsAreaStyled>
+            <FilterArea count={0} totalCount={foodList.length} />
+            <CardListStyled>
+                {foodList.map((food) => (
+                    <li key={food.strMeal}>
                         <Card
                             cardInfo={{
                                 img: food.strMealThumb,
@@ -20,11 +21,14 @@ const CardList = () => {
                         />
                     </li>
                 ))}
-        </CardListStyled>
+            </CardListStyled>
+        </ContentsAreaStyled>
     );
 };
 
-export default CardList;
+export default ContentsArea;
+
+const ContentsAreaStyled = styled.section``;
 
 const CardListStyled = styled.ul`
     list-style: none;

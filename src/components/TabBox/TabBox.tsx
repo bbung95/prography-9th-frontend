@@ -3,17 +3,27 @@ import styled from '@emotion/styled';
 import { ICategory } from '../../apis/api';
 import Chip from '../Chip/Chip';
 
+export interface ITab extends ICategory {
+    isFocus?: boolean;
+}
+
 interface Props {
-    tabs: ICategory[];
+    tabs: ITab[];
+    handleClick: (strCategory: string) => void;
 }
 
 const TabBox = (props: Props) => {
-    const { tabs } = props;
+    const { tabs, handleClick } = props;
 
     return (
         <TabBoxStyled>
             {tabs.map((tab) => (
-                <Chip key={tab.idCategory} text={tab.strCategory} />
+                <Chip
+                    key={tab.idCategory}
+                    text={tab.strCategory}
+                    isFocus={tab.isFocus}
+                    handleClick={() => handleClick(tab.strCategory)}
+                />
             ))}
         </TabBoxStyled>
     );
