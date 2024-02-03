@@ -68,12 +68,15 @@ types : emotion Type이 정의되어 있습니다.
 
 화면 샘플과 비슷한 UI와 레이아웃을 적용했습니다.
 
+![Feb-04-2024 04-25-30](https://github.com/bbung95/prography-9th-frontend/assets/77668478/c83a9786-0eb4-416a-91ae-d3153ab978cf)
+
 ### 2. useQueries
 
 음식 목록을 제공하는 API가 단일 카테고리 조회만 가능한 스펙이였습니다.
+
 ex) https://www.themealdb.com/api/json/v1/1/filter.php?c=${strCategory}
 
-많은 카테고리의 상품들을 가져와 하나의 목록으로 렌더링하는데 시간이 걸릴거라 생각하여 useQueries를 통한 병렬처리를 진행했습니다.
+많은 카테고리의 상품들을 가져와 하나의 목록으로 렌더링하는데 시간이 걸릴거라 생각하여 useQueries를 통해 병렬로 진행했습니다.
 
 v5에서 지원하는 combine 옵션을 통해 각기 다른 데이터를 하나로 모아 관리할 수 있었습니다.
 
