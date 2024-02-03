@@ -2,16 +2,13 @@ import { useRef } from 'react';
 
 const useScrollObserver = (callback: () => void) => {
     const observer = useRef(
-        new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        callback();
-                    }
-                });
-            },
-            // { threshold: 1 },
-        ),
+        new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    callback();
+                }
+            });
+        }),
     );
 
     const observe = (el: HTMLElement) => {

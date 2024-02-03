@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useRef } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import useFoodList from '../../hooks/useFoodList';
 import useScrollObserver from '../../hooks/useScrollObserver';
@@ -9,11 +9,17 @@ import FilterArea from '../FilterArea/FilterArea';
 const ContentsArea = () => {
     const targetRef = useRef(null);
     const { foodList, sort, offset, setOffset, changeSort } = useFoodList();
+    const [viewType, setViewType] = useState<number>(4);
     const count = offset * (foodList.length > 20 ? 20 : foodList.length);
 
     const { observe, unobserve } = useScrollObserver(() => {
         setOffset((offset) => offset + 1);
     });
+
+    const changeViewType = (e: ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value;
+        setViewType(Number(value));
+    };
 
     useEffect(() => {
         if (targetRef.current) {
@@ -32,17 +38,19 @@ const ContentsArea = () => {
                 totalCount={foodList.length}
                 sort={sort}
                 handleChange={changeSort}
+                viewType={viewType}
+                handleChangeView={changeViewType}
             />
             <CardListStyled>
                 {foodList.slice(0, count).map((food) => (
-                    <li key={food.strMeal}>
-                        <Card
-                            cardInfo={{
-                                img: food.strMealThumb,
-                                info: food.strMeal,
-                            }}
-                        />
-                    </li>
+                    <Card
+                        key={food.strMeal}
+                        cardInfo={{
+                            img: food.strMealThumb,
+                            info: food.strMeal,
+                        }}
+                        viewType={viewType}
+                    />
                 ))}
             </CardListStyled>
             <div ref={targetRef} style={{ width: '100px', height: '20px' }} />
@@ -54,8 +62,10 @@ export default ContentsArea;
 
 const ContentsAreaStyled = styled.section``;
 
-const CardListStyled = styled.ul`
+const CardListStyled = styled.div`
     list-style: none;
+
+    width: 100%;
 
     margin: 0;
     padding: 0;

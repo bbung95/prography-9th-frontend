@@ -23,8 +23,8 @@ export default HomePage;
 
 const ContainerStyled = styled.div`
     width: 100%;
-    max-width: 1040px;
+    max-width: 1280px;
 
-    padding-top: 30px;
+    padding: 30px 20px 0;
     margin: 0 auto;
 `;

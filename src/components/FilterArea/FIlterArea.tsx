@@ -33,11 +33,13 @@ interface Props {
     count: number;
     totalCount: number;
     sort?: string;
+    viewType: number;
     handleChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
+    handleChangeView?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const FilterArea = (props: Props) => {
-    const { count, totalCount, sort, handleChange } = props;
+    const { count, totalCount, sort, viewType, handleChange, handleChangeView } = props;
 
     return (
         <FilterAreaStyled>
@@ -46,7 +48,11 @@ const FilterArea = (props: Props) => {
             </InfoBoxStyled>
             <FilterGroupStyled>
                 <SelectBox options={sortOption} selectValue={sort} handleChange={handleChange} />
-                <SelectBox options={viewOption} selectValue='4' />
+                <SelectBox
+                    options={viewOption}
+                    selectValue={String(viewType)}
+                    handleChange={handleChangeView}
+                />
             </FilterGroupStyled>
         </FilterAreaStyled>
     );
