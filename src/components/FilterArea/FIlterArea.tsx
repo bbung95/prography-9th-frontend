@@ -77,4 +77,10 @@ const FilterGroupStyled = styled.div`
     display: flex;
     flex-direction: row;
     gap: 12px;
+
+    & > select:last-child {
+        @media screen and (max-width: 576px) {
+            display: none;
+        }
+    }
 `;

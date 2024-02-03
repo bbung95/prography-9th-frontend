@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import CardList from '../components/ContentsArea/ContentsArea';
 import TabBox from '../components/TabBox/TabBox';
+import TopButton from '../components/TopButton/TopButton';
 import useFilterTab from '../hooks/useFilterTab';
 
 const HomePage = () => {
@@ -15,6 +16,7 @@ const HomePage = () => {
                     <CardList />
                 </>
             )}
+            <TopButton />
         </ContainerStyled>
     );
 };
@@ -27,4 +29,6 @@ const ContainerStyled = styled.div`
 
     padding: 30px 20px 0;
     margin: 0 auto;
+
+    position: relative;
 `;
