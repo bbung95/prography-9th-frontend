@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ChangeEvent } from 'react';
 
 import SelectBox, { IOption } from '../SelectBox/SelectBox';
 
@@ -31,10 +32,14 @@ const viewOption: IOption[] = [
 interface Props {
     count: number;
     totalCount: number;
+    sort?: string;
+    handleChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const FilterArea = (props: Props) => {
-    const { count, totalCount } = props;
+    const { count, totalCount, sort, handleChange } = props;
+
+    console.log(sort);
 
     return (
         <FilterAreaStyled>
@@ -42,7 +47,7 @@ const FilterArea = (props: Props) => {
                 {count}/{totalCount} 개 조회
             </InfoBoxStyled>
             <FilterGroupStyled>
-                <SelectBox options={sortOption} />
+                <SelectBox options={sortOption} selectValue={sort} handleChange={handleChange} />
                 <SelectBox options={viewOption} selectValue='4' />
             </FilterGroupStyled>
         </FilterAreaStyled>

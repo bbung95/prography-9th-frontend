@@ -5,11 +5,16 @@ import Card from '../Card/Card';
 import FilterArea from '../FilterArea/FilterArea';
 
 const ContentsArea = () => {
-    const { foodList } = useFoodList();
+    const { foodList, sort, changeSort } = useFoodList();
 
     return (
         <ContentsAreaStyled>
-            <FilterArea count={0} totalCount={foodList.length} />
+            <FilterArea
+                count={0}
+                totalCount={foodList.length}
+                sort={sort}
+                handleChange={changeSort}
+            />
             <CardListStyled>
                 {foodList.map((food) => (
                     <li key={food.strMeal}>

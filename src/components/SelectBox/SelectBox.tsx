@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { ChangeEvent } from 'react';
 
 export interface IOption {
     text: string;
@@ -8,15 +9,16 @@ export interface IOption {
 interface Props {
     selectValue?: string;
     options: IOption[];
+    handleChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const SelectBox = (props: Props) => {
-    const { selectValue, options } = props;
+    const { selectValue, options, handleChange } = props;
 
     const defaultValue = selectValue || options[0].value;
 
     return (
-        <SelectBoxStyled defaultValue={defaultValue}>
+        <SelectBoxStyled defaultValue={defaultValue} onChange={handleChange}>
             {options.map((option) => (
                 <option key={option.value} value={option.value}>
                     {option.text}
