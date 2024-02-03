@@ -9,8 +9,12 @@ const HomePage = () => {
 
     return (
         <ContainerStyled>
-            {!isLoading && <TabBox tabs={tabs} handleClick={handleSelectCategory} />}
-            <CardList selectCategory={'selectCategory'} />
+            {!isLoading && (
+                <>
+                    <TabBox tabs={tabs} handleClick={handleSelectCategory} />
+                    <CardList />
+                </>
+            )}
         </ContainerStyled>
     );
 };

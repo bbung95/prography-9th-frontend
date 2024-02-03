@@ -1,40 +1,26 @@
 import styled from '@emotion/styled';
-import { useQuery } from 'react-query';
 
-import { fetchGetFoodList } from '../../apis/api';
+import useFoodList from '../../hooks/useFoodList';
 import Card from '../Card/Card';
 import FilterArea from '../FilterArea/FilterArea';
 
-interface Props {
-    selectCategory?: string;
-}
-
-const ContentsArea = (props: Props) => {
-    const { selectCategory = '' } = props;
-    const { data, isLoading } = useQuery(
-        ['foods', selectCategory],
-        () => fetchGetFoodList(selectCategory),
-        {
-            staleTime: Infinity,
-        },
-    );
-    const meals = data?.meals ?? [];
+const ContentsArea = () => {
+    const { foodList } = useFoodList();
 
     return (
         <ContentsAreaStyled>
-            <FilterArea count={0} totalCount={meals.length} />
+            <FilterArea count={0} totalCount={foodList.length} />
             <CardListStyled>
-                {!isLoading &&
-                    meals.map((food) => (
-                        <li key={food.idMeal}>
-                            <Card
-                                cardInfo={{
-                                    img: food.strMealThumb,
-                                    info: food.strMeal,
-                                }}
-                            />
-                        </li>
-                    ))}
+                {foodList.map((food) => (
+                    <li key={food.strMeal}>
+                        <Card
+                            cardInfo={{
+                                img: food.strMealThumb,
+                                info: food.strMeal,
+                            }}
+                        />
+                    </li>
+                ))}
             </CardListStyled>
         </ContentsAreaStyled>
     );

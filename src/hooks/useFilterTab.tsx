@@ -1,39 +1,48 @@
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 import { useSearchParams } from 'react-router-dom';
 
 import { fetchGetCategory } from '../apis/api';
 import { ITab } from '../components/TabBox/TabBox';
 
 const useFilterTab = () => {
-    const { data, isLoading } = useQuery(['category'], fetchGetCategory);
+    const { data, isLoading } = useQuery({
+        queryKey: ['category'],
+        queryFn: fetchGetCategory,
+    });
     const [searchParams, setSearchParams] = useSearchParams();
+    const [currentParam, setCurrentParam] = useState<string[]>(
+        searchParams.get('category')?.split(',') ?? [],
+    );
     const [tabs, setTabs] = useState<ITab[]>([]);
 
     const handleSelectCategory = (strCategory: string) => {
-        const categories = searchParams.get('category')?.split(',') ?? [];
         searchParams.delete('category');
 
         // query string이 있을 경우
-        if (categories.includes(strCategory)) {
-            const tamp = categories.filter((cat) => cat !== strCategory);
-            searchParams.append('category', tamp.join(','));
+        if (currentParam.includes(strCategory)) {
+            const tamp = currentParam.filter((cat) => cat !== strCategory);
+            if (tamp.length > 0) {
+                searchParams.append('category', tamp.join(','));
+            }
         } else {
-            const param = categories.length > 0 ? categories.join(',') + ',' : '';
-            searchParams.append('category', param + strCategory);
+            const param =
+                currentParam.length > 0 ? currentParam.join(',') + ',' + strCategory : strCategory;
+            searchParams.append('category', param);
         }
         setSearchParams(searchParams);
     };
 
     useEffect(() => {
         if (!isLoading) {
+            const categories = searchParams.get('category')?.split(',') ?? [];
             const newTabs: ITab[] =
                 data?.categories.map((tab) => {
-                    const categories = searchParams.get('category')?.split(',') ?? [];
-                    const isFocus = !!categories.find((cat) => cat === tab.strCategory);
+                    const isFocus = categories.includes(tab.strCategory);
                     return { ...tab, isFocus };
                 }) ?? [];
             setTabs(newTabs);
+            setCurrentParam(categories);
         }
     }, [searchParams, isLoading]);
 
