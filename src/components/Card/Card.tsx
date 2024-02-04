@@ -19,7 +19,7 @@ const Card = (props: Props) => {
     return (
         <CardStyled $viewType={viewType}>
             <ImageWrapperStyled>
-                <img src={img} alt='' loading='lazy' />
+                <img src={img} alt='' loading='lazy' width={250} height={250} />
             </ImageWrapperStyled>
             <CardInfo>{info}</CardInfo>
         </CardStyled>
