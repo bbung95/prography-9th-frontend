@@ -38,7 +38,7 @@ interface Props {
     handleChangeView?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const FilterArea = (props: Props) => {
+const FilterBox = (props: Props) => {
     const { count, totalCount, sort, viewType, handleChange, handleChangeView } = props;
 
     return (
@@ -58,7 +58,7 @@ const FilterArea = (props: Props) => {
     );
 };
 
-export default FilterArea;
+export default FilterBox;
 
 const FilterAreaStyled = styled.div`
     padding: 18px 0;

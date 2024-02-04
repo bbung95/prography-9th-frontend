@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import useFoodList from '../../hooks/useFoodList';
 import useScrollObserver from '../../hooks/useScrollObserver';
 import Card from '../Card/Card';
-import FilterArea from '../FilterArea/FilterArea';
+import FilterBox from '../FilterBox/FilterBox';
 
 const ContentsArea = () => {
     const targetRef = useRef(null);
@@ -33,7 +33,7 @@ const ContentsArea = () => {
 
     return (
         <ContentsAreaStyled>
-            <FilterArea
+            <FilterBox
                 count={count > foodList.length ? foodList.length : count}
                 totalCount={foodList.length}
                 sort={sort}
